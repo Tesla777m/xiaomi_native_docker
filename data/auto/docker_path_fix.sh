@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Create /etc/profile.d/ directory if it doesn't exist
 if [ ! -d "/etc/profile.d" ]; then
