@@ -45,13 +45,13 @@ chmod +x /data/auto/mkd.sh
 /data/auto/mkd.sh APPDATA
 ```
 
-1. Установка Portainer:
+1. Установка Portainer [описание контейнера](https://hub.docker.com/r/portainer/portainer-ce):
 
 ```bash
 docker run -d -p 9000:9000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer-ce:latest
 ```
 
-2. Установка AdguardHome:
+2. Установка AdguardHome [описание контейнера](https://hub.docker.com/r/adguard/adguardhome):
 
 Создать папки:
 
@@ -71,7 +71,7 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
   -d adguard/adguardhome
 ```
 
-3. Установка Transmission:
+3. Установка Transmission [описание контейнера](https://hub.docker.com/r/linuxserver/transmission):
 
 · Предварительно создайте папки на стороне роутера:
 
@@ -93,7 +93,7 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
   linuxserver/transmission:latest
 ```
 
-4. Установка FileBrowser:
+4. Установка FileBrowser [описание контейнера](https://hub.docker.com/r/filebrowser/filebrowser):
 
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
@@ -105,7 +105,7 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 ```
 >* Пароль для входы необходимо посмотреть в логе контейнера.
 
-5. Установка Torrserver:
+5. Установка Torrserver [описание контейнера](https://hub.docker.com/r/ksey/torrserver):
 
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
