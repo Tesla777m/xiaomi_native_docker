@@ -72,6 +72,14 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 
 3. Установка Transmission:
 
+· Предварительно создайте папки на стороне роутера:
+
+```bash
+/data/auto/mkd.sh share/transmission/config
+/data/auto/mkd.sh share/downloads
+/data/auto/mkd.sh share/watch
+```
+
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
  docker run -d \
@@ -82,14 +90,6 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
   -v $USB_PATH/share/downloads:/downloads \
   -v $USB_PATH/share/watch:/watch \
   linuxserver/transmission:latest
-```
-
-· Предварительно создайте папки на стороне роутера:
-
-```bash
-/data/auto/mkd.sh share/transmission/config
-/data/auto/mkd.sh share/downloads
-/data/auto/mkd.sh share/watch
 ```
 
 4. Установка FileBrowser:
