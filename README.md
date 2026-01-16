@@ -1,4 +1,4 @@
-##Сборник Docker контейнеров для установки через SSH на Xiaomi router be7000
+## Сборник Docker контейнеров для установки через SSH на Xiaomi router be7000
 
 Предварительные действия:
 
@@ -103,7 +103,7 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
   -v $USB_PATH:/srv\
   filebrowser/filebrowser:latest
 ```
->* Пароль для входы необходимо посмотреть в логе контейнера.
+>* Пароль для входа необходимо посмотреть в логе контейнера.
 
 5. Установка Torrserver [описание контейнера](https://hub.docker.com/r/ksey/torrserver):
 
