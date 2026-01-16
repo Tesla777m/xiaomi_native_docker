@@ -107,6 +107,11 @@ export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 
 5. Установка Torrserver [описание контейнера](https://hub.docker.com/r/ksey/torrserver):
 
+· Предварительно создайте папки на стороне роутера:
+```bash
+/data/auto/mkd.sh torrserver/db
+```
+
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
  docker run -d -p 8090:8090\
