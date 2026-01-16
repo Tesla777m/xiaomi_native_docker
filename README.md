@@ -55,13 +55,15 @@ docker run -d -p 9000:9000 -p 9443:9443 --name portainer --restart=always -v /va
 ```
 
 ```bash
-export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
-docker run --name adguardhome --restart unless-stopped \
+export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1) 
+ docker run --name adguardhome --restart unless-stopped \
   -v $USB_PATH/APPDATA/AdguardHome/work:/opt/adguardhome/work \
-  -v $USB_PATH/APPDATA/AdguardHome/conf:/opt/adguardhome/conf \
-  -p 20053:53/tcp -p 20053:53/udp \
+  -v $USB_PATH/APPDATA/AdguardHome/conf:/opt/ adguardhome/conf \
+  -p 20053:53/tcp \
+  -p 20053:53/udp \
   -p 20080:80/tcp \
-  -p 20443:443/tcp -p 20443:443/udp \
+  -p 20443:443/tcp \
+  -p 20443:443/udp \
   -p 3000:3000/tcp \
   -p 853:853/tcp -p 784:784/udp -p 853:853/udp -p 8853:8853/udp \
   -p 5443:5443/tcp -p 5443:5443/udp \
@@ -72,7 +74,7 @@ docker run --name adguardhome --restart unless-stopped \
 
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
-docker run -d \
+ docker run -d \
   -e PUID=0 -e PGID=0 -e TZ=Etc/UTC \
   -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
   --name transmission --restart=unless-stopped \
@@ -94,7 +96,7 @@ docker run -d \
 
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
-docker run -d \
+ docker run -d \
   --name filebrowser --restart always \
   -p АААА:80 \
   -v $USB_PATH:/srv \
@@ -107,7 +109,7 @@ docker run -d \
 
 ```bash
 export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
-docker run -d \
+ docker run -d \
   -p 8090:8090 \
   --name torrserver --restart=unless-stopped \
   -v $USB_PATH/APPDATA/torrserver/db:/TS/db \
