@@ -27,24 +27,16 @@ chmod +x /data/auto/docker_path_fix.sh
 /data/auto/docker_path_fix.sh
 ```
 
-Определяем путь к USB-диску автоматически
-
-Находим подключенный USB-диск и задаем переменную USB_PATH:
+Скрипт для создания каталогов в /mnt/usb-***:
 
 ```bash
-USB_DIR=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
-if [ -z "$USB_DIR" ]; then
-    echo "USB диск не найден!"
-    exit 1
-fi
-export USB_PATH="$USB_DIR"
-echo "USB путь: $USB_PATH"
+chmod +x /data/auto/mkd.sh
 ```
 
 Создадим папку для данных будущих контейнеров:
 
 ```bash
-mkdir -p $USB_PATH/APPDATA
+/data/auto/mkd.sh APPDATA
 ```
 
 1. Установка Portainer:
@@ -58,11 +50,12 @@ docker run -d -p 9000:9000 -p 9443:9443 --name portainer --restart=always -v /va
 Создать папки:
 
 ```bash
-mkdir -p $USB_PATH/APPDATA/AdguardHome/work
-mkdir -p $USB_PATH/APPDATA/AdguardHome/conf
+/data/auto/mkd.sh APPDATA/AdguardHome/work
+/data/auto/mkd.sh APPDATA/AdguardHome/conf
 ```
 
 ```bash
+export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 docker run --name adguardhome --restart unless-stopped \
   -v $USB_PATH/APPDATA/AdguardHome/work:/opt/adguardhome/work \
   -v $USB_PATH/APPDATA/AdguardHome/conf:/opt/adguardhome/conf \
@@ -78,6 +71,7 @@ docker run --name adguardhome --restart unless-stopped \
 3. Установка Transmission:
 
 ```bash
+export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 docker run -d \
   -e PUID=0 -e PGID=0 -e TZ=Etc/UTC \
   -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
@@ -91,14 +85,15 @@ docker run -d \
 · Предварительно создайте папки на стороне роутера:
 
 ```bash
-mkdir -p $USB_PATH/share/transmission/config
-mkdir -p $USB_PATH/share/downloads
-mkdir -p $USB_PATH/share/watch
+/data/auto/mkd.sh share/transmission/config
+/data/auto/mkd.sh share/downloads
+/data/auto/mkd.sh share/watch
 ```
 
 4. Установка FileBrowser:
 
 ```bash
+export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 docker run -d \
   --name filebrowser --restart always \
   -p АААА:80 \
@@ -111,6 +106,7 @@ docker run -d \
 5. Установка Torrserver:
 
 ```bash
+export USB_PATH=$(find /mnt -maxdepth 1 -type d -name 'usb-*' | head -n 1)
 docker run -d \
   -p 8090:8090 \
   --name torrserver --restart=unless-stopped \

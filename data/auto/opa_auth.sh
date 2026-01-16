@@ -1,0 +1,1 @@
+sed -i 's/default allow = false/default allow = true/g' /tmp/run/docker/opa/authz.rego

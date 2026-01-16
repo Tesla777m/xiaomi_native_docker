@@ -7,3 +7,6 @@ if [ -z "$USB_DIR" ]; then
 fi
 export USB_PATH="$USB_DIR"
 echo "USB путь: $USB_PATH"
+
+mkdir -p "$USB_PATH/$1"
+echo "Создана $USB_PATH/$1"
